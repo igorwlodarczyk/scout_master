@@ -1,3 +1,49 @@
 from django.db import models
 
 # Create your models here.
+
+
+class Country(models.Model):
+    name = models.CharField(max_length=200)
+    flag = models.ImageField(upload_to="scouting/files/flags")
+
+    def __str__(self):
+        return self.name
+
+
+class League(models.Model):
+    name = models.CharField(max_length=200)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    logo = models.ImageField(upload_to="scouting/files/league_logos")
+
+    def __str__(self):
+        return self.name
+
+
+class Club(models.Model):
+    name = models.CharField(max_length=255)
+    league = models.ForeignKey(League, on_delete=models.CASCADE)
+    badge = models.ImageField(upload_to="scouting/files/club_badges")
+
+    def __str__(self):
+        return self.name
+
+
+class Player(models.Model):
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    birth_date = models.DateField()
+    height = models.FloatField()
+    weight = models.FloatField()
+    photo = models.ImageField(upload_to="scouting/files/player_photos")
+    nationality = models.ForeignKey(Country, on_delete=models.CASCADE)
+    position = models.CharField(max_length=255)
+    club = models.ForeignKey(Club, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} - {self.club.name}"
+
+
+class ScoutReport(models.Model):
+    date = models.DateField(auto_now_add=True)
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
