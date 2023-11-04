@@ -7,7 +7,7 @@ python3 -m venv venv
 pip install -r requirements.txt
 ```
 
-Inside src directory create .env file with following structure:
+Inside **'src'** directory create **'.env'** file with following structure:
 ```dotenv
 SECRET_KEY=
 DB_NAME=
@@ -22,7 +22,7 @@ For SECRET_KEY use Django built-in function to generate keys.
 python3 -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
 ```
 
-To test configuration run these commands (you need to be inside src directory):
+To test configuration run these commands (you need to be inside **'src'** directory):
 ```shell
 python3 manage.py migrate
 python3 manage.py runserver
