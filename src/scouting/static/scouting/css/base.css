@@ -1,0 +1,17 @@
+body {
+    background: linear-gradient(to right, rgb(111, 111, 158), rgb(255, 255, 255));
+}
+
+.page_title {
+    font-family: 'Rubik Moonrocks', sans-serif;
+    text-align: center;
+    font-size: 60px;
+}
+
+.white-text {
+    color: white;
+}
+
+.red-text {
+    color: red;
+}
