@@ -24,6 +24,8 @@ python3 -c "from django.core.management.utils import get_random_secret_key; prin
 
 To test configuration run these commands (you need to be inside **'src'** directory):
 ```shell
+python3 manage.py makemigrations
 python3 manage.py migrate
+python3 manage.py create_groups
 python3 manage.py runserver
 ```
