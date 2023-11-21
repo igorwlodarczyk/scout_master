@@ -33,8 +33,8 @@ class Player(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     birth_date = models.DateField()
-    height = models.FloatField()
-    weight = models.FloatField()
+    height = models.IntegerField()
+    weight = models.IntegerField()
     photo = models.ImageField(upload_to="scouting/files/player_photos")
     nationality = models.ForeignKey(Country, on_delete=models.CASCADE)
     position = models.CharField(max_length=255)
@@ -44,6 +44,21 @@ class Player(models.Model):
         return f"{self.first_name} {self.last_name} - {self.club.name}"
 
 
+class Match(models.Model):
+    date = models.DateField()
+    home_club = models.ForeignKey(
+        Club, on_delete=models.CASCADE, related_name="home_club"
+    )
+    away_club = models.ForeignKey(
+        Club, on_delete=models.CASCADE, related_name="away_club"
+    )
+    result = models.CharField(max_length=255)
+
+
 class ScoutReport(models.Model):
     date = models.DateField(auto_now_add=True)
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
+    match = models.ForeignKey(Match, on_delete=models.CASCADE)
+    rating = models.FloatField()
+    minutes_played = models.IntegerField()
+    scout_name = models.CharField(max_length=255)
