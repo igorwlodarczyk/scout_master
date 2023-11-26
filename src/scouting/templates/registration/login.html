@@ -1,11 +1,25 @@
 {% extends "scouting/base.html" %}
 {% load static %}
 {% block page_title %}ScoutMaster - login{% endblock %}
-
+{% block scripts %}
+<link rel="stylesheet" type="text/css" href="{% static 'scouting/css/login_page.css' %}">
+{% endblock %}
 {% block content %}
-<form method="post" class="form-group">
-    {% csrf_token %}
-    {{form}}
-    <button type="submit" class="btn btn-success">Login</button>
-</form>
+<div class="login_form">
+    <form method="post" class="form-group">
+        {% csrf_token %}
+        <div class="desc_text">
+            <p>Username</p>
+            {{ form.username }}
+            <p>Password</p>
+            {{ form.password }}
+        </div>
+        <button type="submit" class="btn btn-success">Login</button>
+        {% if form.errors %}
+            <div class="wrong_password">
+                <strong>Error:</strong> Incorrect username or password.
+            </div>
+        {% endif %}
+    </form>
+</div>
 {% endblock %}
