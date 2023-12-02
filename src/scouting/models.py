@@ -30,8 +30,7 @@ class Club(models.Model):
 
 
 class Player(models.Model):
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
     birth_date = models.DateField()
     height = models.IntegerField()
     weight = models.IntegerField()
