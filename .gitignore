@@ -35,3 +35,6 @@ develop-eggs/
 *.log
 *.bak
 flags
+
+*.png
+*.jpg
