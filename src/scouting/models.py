@@ -33,7 +33,6 @@ class Player(models.Model):
     name = models.CharField(max_length=255)
     birth_date = models.DateField()
     height = models.IntegerField()
-    weight = models.IntegerField()
     photo = models.ImageField(upload_to="scouting/files/player_photos")
     nationality = models.ForeignKey(Country, on_delete=models.CASCADE)
     position = models.CharField(max_length=255)
