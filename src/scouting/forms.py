@@ -8,7 +8,6 @@ class ScoutReportForm(forms.ModelForm):
         fields = ["player", "match", "rating", "minutes_played", "scout_name"]
 
     def __init__(self, *args, **kwargs):
-        # Pobierz użytkownika z kontekstu formularza
         user = kwargs.pop("user", None)
         super(ScoutReportForm, self).__init__(*args, **kwargs)
 
