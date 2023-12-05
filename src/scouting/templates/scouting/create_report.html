@@ -1,0 +1,39 @@
+{% extends "scouting/base.html" %}
+{% load static %}
+{% block page_title %}ScoutMaster - logout{% endblock %}
+{% block scripts %}
+<link rel="stylesheet" type="text/css" href="{% static 'scouting/css/create_report.css' %}">
+{% endblock %}
+{% block content %}
+<div class="input_section">
+    <form method="post" action="{% url 'create_scout_report' %}">
+        {% csrf_token %}
+        <div class="form-group">
+        <label for="{{ form.player.id_for_label }}">Player:</label>
+        {{ form.player }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.match.id_for_label }}">Match:</label>
+            {{ form.match }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.rating.id_for_label }}">Rating:</label>
+            {{ form.rating }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.minutes_played.id_for_label }}">Minutes Played:</label>
+            {{ form.minutes_played }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.scout_name.id_for_label }}">Scout Name:</label>
+            {{ form.scout_name }}
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}
