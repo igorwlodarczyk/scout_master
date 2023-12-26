@@ -12,22 +12,23 @@ class Command(BaseCommand):
         parser.add_argument("input_file", type=str, help="Input file with data")
 
     def handle(self, *args, **options):
+        Player.objects.all().delete()
+        Club.objects.all().delete()
+        League.objects.all().delete()
+        Country.objects.all().delete()
+
         input_file_path = options["input_file"]
 
         with open(input_file_path, "r") as file:
             data = json.load(file)
 
         countries = self.__collect_countries(data)
-        country_objects = [
+        for country, flag_file_path in countries.items():
             self.__create_country_object(country, flag_file_path)
-            for country, flag_file_path in countries.items()
-        ]
 
-        league_objects = self.__create_league_objects(data, country_objects)
-        club_objects = self.__create_club_objects(data, league_objects)
-        player_objects = self.__create_player_objects(
-            data, country_objects, club_objects
-        )
+        self.__create_league_objects(data)
+        self.__create_club_objects(data)
+        self.__create_player_objects(data)
 
     @staticmethod
     def __create_country_object(country_name, flag_file_path) -> Country:
@@ -55,8 +56,8 @@ class Command(BaseCommand):
         return countries
 
     @staticmethod
-    def __create_league_objects(data, country_objects):
-        league_objects = []
+    def __create_league_objects(data):
+        country_objects = Country.objects.all()
         for league in data["leagues"]:
             for country in country_objects:
                 if country.name == league["country"]["country"]:
@@ -68,12 +69,11 @@ class Command(BaseCommand):
                     os.path.basename(league["logo_path"]),
                     File(file),
                 )
-            league_objects.append(new_league)
-        return league_objects
 
     @staticmethod
-    def __create_club_objects(data, league_objects):
-        club_objects = []
+    def __create_club_objects(data):
+        league_objects = League.objects.all()
+
         for club in data["clubs"]:
             for league in league_objects:
                 if league.name == club["league"]:
@@ -85,11 +85,10 @@ class Command(BaseCommand):
                     os.path.basename(club["logo_path"]),
                     File(file),
                 )
-            club_objects.append(new_club)
-        return club_objects
 
-    def __create_player_objects(self, data, country_objects, club_objects):
-        player_objects = []
+    def __create_player_objects(self, data):
+        country_objects = Country.objects.all()
+        club_objects = Club.objects.all()
         for player in data["players"]:
             for country in country_objects:
                 if country.name == player["nationality"]["nationality"]:
@@ -112,5 +111,3 @@ class Command(BaseCommand):
                     os.path.basename(player["photo_path"]),
                     File(file),
                 )
-            player_objects.append(new_player)
-        return player_objects
