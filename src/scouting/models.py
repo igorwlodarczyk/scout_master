@@ -52,6 +52,9 @@ class Match(models.Model):
     )
     result = models.CharField(max_length=255)
 
+    def __str__(self):
+        return f"{self.home_club} {self.result} {self.away_club} - {self.date}"
+
 
 class ScoutReport(models.Model):
     date = models.DateField(auto_now_add=True)
@@ -60,3 +63,6 @@ class ScoutReport(models.Model):
     rating = models.FloatField()
     minutes_played = models.IntegerField()
     scout_name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"{self.scout_name} - {self.player.name} - {self.match.date} - {self.rating}"
