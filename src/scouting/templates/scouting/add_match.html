@@ -1,0 +1,16 @@
+{% extends "scouting/base.html" %}
+{% load static %}
+{% block page_title %}ScoutMaster - add match{% endblock %}
+{% block scripts %}
+<link rel="stylesheet" type="text/css" href="{% static 'scouting/css/form.css' %}">
+{% endblock %}
+{% block content %}
+<div class="input_section">
+    <form action="{% url 'add_match' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input class="input_button" type="submit" value="Submit">
+    </form>
+</div>
+
+{% endblock %}
