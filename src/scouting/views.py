@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .decorators import group_required
 from .utils import is_user_in_group
 from .forms import ScoutReportForm, MatchForm
 from .models import ScoutReport
@@ -26,6 +25,7 @@ def create_scout_report(request):
     return render(request, "scouting/create_report.html", {"form": form})
 
 
+@login_required(login_url="/login/")
 def add_match(request):
     if request.method == "POST":
         form = MatchForm(request.POST)
