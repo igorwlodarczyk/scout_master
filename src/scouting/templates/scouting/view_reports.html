@@ -16,22 +16,7 @@
         <th>Delete report</th>
     </tr>
 {% for report in reports %}
-    {% if report.scout_name == user and not sports_director %}
-    <tr>
-        <th>{{ report.date }}</th>
-        <th>{{ report.player.name }}</th>
-        <th>{{ report.rating }}</th>
-        <th>{{ report.minutes_played }}</th>
-        <th>{{ report.match }}</th>
-        <th>Edit</th>
-        <th>
-            <form method="post" action="{% url 'delete_report' report.id %}">
-                {% csrf_token %}
-                <button type="submit">Delete</button>
-            </form>
-        </th>
-    </tr>
-    {% elif sports_director %}
+    {% if report.scout_name == user or sports_director %}
     <tr>
         <th>{{ report.date }}</th>
         <th>{{ report.player.name }}</th>
