@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 # Create your models here.
 
@@ -40,6 +41,10 @@ class Player(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.club.name}"
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
 
 class Match(models.Model):
