@@ -24,7 +24,12 @@
         <th>{{ report.minutes_played }}</th>
         <th>{{ report.match }}</th>
         <th>Edit</th>
-        <th>Delete</th>
+        <th>
+            <form method="post" action="{% url 'delete_report' report.id %}">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
+        </th>
     </tr>
     {% elif sports_director %}
     <tr>
@@ -34,7 +39,12 @@
         <th>{{ report.minutes_played }}</th>
         <th>{{ report.match }}</th>
         <th>Edit</th>
-        <th>Delete</th>
+        <th>
+            <form method="post" action="{% url 'delete_report' report.id %}">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
+        </th>
     </tr>
     {% endif %}
 {% endfor %}

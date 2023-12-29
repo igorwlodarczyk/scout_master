@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .utils import is_user_in_group
 from .forms import ScoutReportForm, MatchForm
@@ -49,3 +49,10 @@ def view_reports(request):
         "sports_director": is_user_in_group(groups, "Sports_director"),
     }
     return render(request, "scouting/view_reports.html", context)
+
+
+@login_required(login_url="/login/")
+def delete_report(request, report_id):
+    report = get_object_or_404(ScoutReport, id=report_id)
+    report.delete()
+    return redirect("success_page")
