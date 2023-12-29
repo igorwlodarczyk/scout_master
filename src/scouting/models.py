@@ -38,6 +38,7 @@ class Player(models.Model):
     nationality = models.ForeignKey(Country, on_delete=models.CASCADE)
     position = models.CharField(max_length=255)
     club = models.ForeignKey(Club, on_delete=models.CASCADE)
+    slug = models.SlugField(max_length=255)
 
     def __str__(self):
         return f"{self.name} - {self.club.name}"
