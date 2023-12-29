@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .decorators import group_required
+from .utils import is_user_in_group
 from .forms import ScoutReportForm, MatchForm
 from .models import ScoutReport
 
@@ -37,8 +38,14 @@ def add_match(request):
     return render(request, "scouting/add_match.html", {"form": form})
 
 
+@login_required(login_url="/login/")
 def view_reports(request):
+    groups = request.user.groups.all()
     user = str(request.user)
     reports = ScoutReport.objects.all().filter(scout_name=user)
-    context = {"reports": reports}
+    context = {
+        "reports": reports,
+        "user": user,
+        "sports_director": is_user_in_group(groups, "Sports_director"),
+    }
     return render(request, "scouting/view_reports.html", context)

@@ -1,9 +1,42 @@
 {% extends "scouting/base.html" %}
 {% load static %}
-{% block page_title %}ScoutMaster - add match{% endblock %}
+{% block page_title %}ScoutMaster - view reports{% endblock %}
 {% block scripts %}
-
+<link rel="stylesheet" type="text/css" href="{% static 'scouting/css/view_reports.css' %}">
 {% endblock %}
 {% block content %}
-
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Player</th>
+        <th>Rating</th>
+        <th>Minutes played</th>
+        <th>Game</th>
+        <th>Edit report</th>
+        <th>Delete report</th>
+    </tr>
+{% for report in reports %}
+    {% if report.scout_name == user and not sports_director %}
+    <tr>
+        <th>{{ report.date }}</th>
+        <th>{{ report.player.name }}</th>
+        <th>{{ report.rating }}</th>
+        <th>{{ report.minutes_played }}</th>
+        <th>{{ report.match }}</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    {% elif sports_director %}
+    <tr>
+        <th>{{ report.date }}</th>
+        <th>{{ report.player.name }}</th>
+        <th>{{ report.rating }}</th>
+        <th>{{ report.minutes_played }}</th>
+        <th>{{ report.match }}</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    {% endif %}
+{% endfor %}
+</table>
 {% endblock %}
