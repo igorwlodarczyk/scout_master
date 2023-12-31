@@ -7,4 +7,5 @@ urlpatterns = [
     path("view-reports", views.view_reports, name="view_reports"),
     path("add-match", views.add_match, name="add_match"),
     path("delete-report/<int:report_id>/", views.delete_report, name="delete_report"),
+    path("players/<slug:slug>", views.player_details, name="player_details"),
 ]

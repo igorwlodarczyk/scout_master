@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .utils import is_user_in_group
 from .forms import ScoutReportForm, MatchForm
-from .models import ScoutReport
+from .models import ScoutReport, Player
 
 # Create your views here.
 
@@ -56,3 +56,11 @@ def delete_report(request, report_id):
     report = get_object_or_404(ScoutReport, id=report_id)
     report.delete()
     return redirect("success_page")
+
+
+@login_required(login_url="/login/")
+def player_details(request, slug):
+    player = get_object_or_404(Player, slug=slug)
+    player_reports = ScoutReport.objects.all().filter(player=player)
+    context = {"player": player, "reports": player_reports}
+    return render(request, "scouting/player_details.html", context)
