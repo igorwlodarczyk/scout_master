@@ -1,0 +1,27 @@
+{% extends "scouting/base.html" %}
+{% load static %}
+{% block page_title %}ScoutMaster - player {{ player.name }}{% endblock %}
+{% block scripts %}
+<link rel="stylesheet" type="text/css" href="{% static 'scouting/css/player_details2.css' %}">
+{% endblock %}
+{% block content %}
+<div class="player_frame">
+    <img src="{{ player.photo.url }}" class="player_photo"/>
+    <div class="player_info">
+        <p>Name: {{ player.name }}</p>
+        <p>Birthdate: {{player.birth_date }}</p>
+        <p>Height: {{ player.height }} cm</p>
+        <p>Nationality: {{ player.nationality.name }}
+         <img src="{{ player.nationality.flag.url }}" alt="Nationality Flag">
+        </p>
+        <p>Position: {{ player.position}}</p>
+        <p>Club: {{ player.club.name }}
+         <img src="{{ player.club.badge.url }}" alt="Club Logo" height=15px;>
+        </p>
+        <p>League: {{ player.club.league.name }}
+         <img src="{{ player.club.league.logo.url }}" alt="League logo">
+        </p>
+    </div>
+</div>
+
+{% endblock %}

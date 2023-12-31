@@ -1,0 +1,26 @@
+.player_frame {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    transform: translate(-50%, 0%);
+    left: 50%;
+    top: 100px;
+    background: #DCDCDC;
+    font-family: 'Kanit', sans-serif;
+    font-size: 20px;
+}
+
+.player_info {
+    position: absolute;
+    top: 80px;
+    left: 270px;;
+}
+
+.player_photo{
+    position: relative;
+    top: 100px;
+    left: 50px;
+    width: 200px;
+    border: 1px solid #000;
+    border-radius: 40px;
+}
