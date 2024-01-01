@@ -2,7 +2,7 @@
 {% load static %}
 {% block page_title %}ScoutMaster - player {{ player.name }}{% endblock %}
 {% block scripts %}
-<link rel="stylesheet" type="text/css" href="{% static 'scouting/css/player_details2.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'scouting/css/player_details3.css' %}">
 {% endblock %}
 {% block content %}
 <div class="player_frame">
@@ -23,5 +23,16 @@
         </p>
     </div>
 </div>
-
+<div class="reports_section">
+    <h2>Available reports</h2>
+    {% if reports %}
+    <ul>
+        {% for report in reports %}
+        <li>{{ report.match }} - rating: {{ report.rating }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No available reports.</p>
+    {% endif %}
+</div>
 {% endblock %}

@@ -24,3 +24,24 @@
     border: 1px solid #000;
     border-radius: 40px;
 }
+
+.reports_section {
+    position: relative;
+    margin-top: 200px;
+    width: 800px;
+    transform: translate(-50%, 0%);
+    left: 50%;
+    background: #DCDCDC;
+    font-family: 'Kanit', sans-serif;
+    font-size: 20px;
+}
+
+.reports_section li {
+    list-style-type: none;
+    text-align: center;
+}
+
+.reports_section p,
+.reports_section h2 {
+    text-align: center;
+}
