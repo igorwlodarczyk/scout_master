@@ -1,5 +1,37 @@
 from django import forms
-from .models import ScoutReport, Player, Match, Club
+from .models import ScoutReport, Player, Match, Club, Country
+
+
+class PlayerForm(forms.ModelForm):
+    class Meta:
+        model = Player
+        fields = [
+            "name",
+            "birth_date",
+            "height",
+            "photo",
+            "nationality",
+            "position",
+            "club",
+        ]
+
+        widgets = {
+            "name": forms.TextInput(attrs={"class": "input_field"}),
+            "birth_date": forms.DateInput(
+                attrs={"class": "input_field", "type": "date"}
+            ),
+            "height": forms.NumberInput(attrs={"class": "input_field"}),
+            "photo": forms.FileInput(attrs={"class": "input_field"}),
+            "nationality": forms.Select(attrs={"class": "input_field"}),
+            "position": forms.TextInput(attrs={"class": "input_field"}),
+            "club": forms.Select(attrs={"class": "input_field"}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(PlayerForm, self).__init__(*args, **kwargs)
+
+        self.fields["nationality"].queryset = Country.objects.all()
+        self.fields["club"].queryset = Club.objects.all()
 
 
 class ScoutReportForm(forms.ModelForm):

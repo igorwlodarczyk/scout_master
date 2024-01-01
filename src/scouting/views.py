@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .utils import is_user_in_group
-from .forms import ScoutReportForm, MatchForm
+from .forms import ScoutReportForm, MatchForm, PlayerForm
 from .models import ScoutReport, Player
 
 # Create your views here.
@@ -88,10 +88,34 @@ def view_players(request):
 
 
 def delete_player(request, player_id):
-    # TODO
-    ...
+    player = get_object_or_404(Player, id=player_id)
+    player.delete()
+    return redirect("view_players")
 
 
 def edit_player(request, player_id):
-    # TODO
-    ...
+    # TODO fix form rendering
+    player = get_object_or_404(Player, id=player_id)
+    if request.method == "POST":
+        form = PlayerForm(request.POST, request.FILES, instance=player)
+        if form.is_valid():
+            form.save()
+            return redirect("view_players")
+    else:
+        form = PlayerForm(instance=player)
+
+    return render(
+        request, "scouting/edit_player.html", {"form": form, "player": player}
+    )
+
+
+def add_player(request):
+    if request.method == "POST":
+        form = PlayerForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("view_players")
+    else:
+        form = PlayerForm()
+
+    return render(request, "scouting/add_player.html", {"form": form})

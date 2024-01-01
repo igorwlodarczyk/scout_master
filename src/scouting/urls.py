@@ -12,4 +12,5 @@ urlpatterns = [
     path("view-players", views.view_players, name="view_players"),
     path("delete-player/<int:player_id>/", views.delete_player, name="delete_player"),
     path("edit-player/<int:player_id>/", views.edit_player, name="edit_player"),
+    path("add-player", views.add_player, name="add_player"),
 ]
