@@ -1,9 +1,21 @@
 {% extends "scouting/base.html" %}
 {% load static %}
 {% block page_title %}ScoutMaster{% endblock %}
-
 {% block scripts %}
+<link rel="stylesheet" type="text/css" href="{% static 'scouting/css/index.css' %}">
 {% endblock %}
-
 {% block content %}
+<nav class="menu">
+    <ul>
+        <li>
+            <a href="{% url 'create_scout_report' %}">Create report</a>
+        </li>
+        <li>
+            <a href="{% url 'view_reports' %}">View reports</a>
+        </li>
+        <li>
+            <a href="{% url 'add_match' %}">Add match</a>
+        </li>
+    </ul>
+</nav>
 {% endblock %}

@@ -1,0 +1,19 @@
+.menu {
+    position: relative;
+    top: 100px;
+    font-family: 'Kanit', sans-serif;
+    font-size: 50px;
+}
+
+.menu li {
+    list-style-type: none;
+    text-align: center;
+}
+
+.menu a {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    background-color: #88B5FF;
+    width: 300px;
+}
