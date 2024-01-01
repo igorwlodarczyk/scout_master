@@ -1,0 +1,29 @@
+.content_table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 1.3em;
+    min-width: 500px;
+    overflow: hidden;
+    border-radius: 5px 5px 0 0;
+}
+
+.content_table thead tr {
+    background-color: #A2CBFF;
+    color: #fff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content_table th,
+.content_table td {
+    padding: 12px 15px;
+    color: #fff;
+}
+
+.content_table tbody {
+    background-color: #6098E1;
+}
+
+.content_table tbody tr:nth-of-type(even) {
+    background-color: #A5BFEA;
+}

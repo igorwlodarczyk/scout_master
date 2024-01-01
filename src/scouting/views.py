@@ -78,3 +78,20 @@ def edit_report(request, report_id):
     return render(
         request, "scouting/edit_report.html", {"form": form, "report": report}
     )
+
+
+@login_required(login_url="/login/")
+def view_players(request):
+    players = Player.objects.all()
+    context = {"players": players}
+    return render(request, "scouting/view_players.html", context)
+
+
+def delete_player(request, player_id):
+    # TODO
+    ...
+
+
+def edit_player(request, player_id):
+    # TODO
+    ...

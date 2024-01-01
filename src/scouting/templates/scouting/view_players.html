@@ -1,0 +1,61 @@
+{% extends "scouting/base.html" %}
+{% load static %}
+{% block page_title %}ScoutMaster - view players{% endblock %}
+{% block scripts %}
+<link rel="stylesheet" type="text/css" href="{% static 'scouting/css/view_players2.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'scouting/css/table.css' %}">
+{% endblock %}
+{% block content %}
+<div class="players_div">
+    <table class="content_table">
+        <thead>
+            <tr>
+                <th>Player photo</th>
+                <th>Name</th>
+                <th>Birthdate</th>
+                <th>Height</th>
+                <th>Nationality</th>
+                <th>Position</th>
+                <th>Club</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for player in players %}
+    <tr>
+        <td>
+            <img src="{{ player.photo.url }}" alt="Player Photo" height="100px">
+        </td>
+        <td>
+            <a class="player_name" href="{% url 'player_details' slug=player.slug %}">
+                {{ player.name }}
+            </a>
+        <td>{{ player.birth_date }}</td>
+        <td>{{ player.height }} cm</td>
+        <td>
+            {{ player.nationality.name }}
+            <img src="{{ player.nationality.flag.url }}" alt="Nationality Flag" height="10px">
+        </td>
+        <td>{{ player.position }}</td>
+        <td>
+            <img src="{{ player.club.badge.url }}" alt="Club Badge" height="100px">
+        </td>
+        <td>
+                <form method="post" action="{% url 'edit_player' player.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Edit</button>
+                </form>
+            </td>
+            <td>
+                <form method="post" action="{% url 'delete_player' player.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+    </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
