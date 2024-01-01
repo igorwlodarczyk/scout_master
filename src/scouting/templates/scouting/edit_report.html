@@ -6,7 +6,7 @@
 {% endblock %}
 {% block content %}
 <div class="input_section">
-    <form action="{% url 'create_scout_report' %}" method="post">
+    <form action="{% url 'edit_report' report.id %}" method="post">
     {% csrf_token %}
     {{ form }}
     <input class="input_button" type="submit" value="Submit">

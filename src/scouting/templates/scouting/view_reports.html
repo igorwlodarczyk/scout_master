@@ -2,40 +2,55 @@
 {% load static %}
 {% block page_title %}ScoutMaster - view reports{% endblock %}
 {% block scripts %}
-<link rel="stylesheet" type="text/css" href="{% static 'scouting/css/view_reports2.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'scouting/css/view_reports3.css' %}">
 {% endblock %}
 {% block content %}
-<table class="content_table">
-    <tr>
-        <th>Player photo</th>
-        <th>Date</th>
-        <th>Player</th>
-        <th>Rating</th>
-        <th>Minutes played</th>
-        <th>Game</th>
-        <th>Edit report</th>
-        <th>Delete report</th>
-    </tr>
-{% for report in reports %}
-    {% if report.scout_name == user or sports_director %}
-    <tr>
-        <th>
-            <img src="{{ report.player.photo.url }}" alt="Player Photo" height="100px">
-        </th>
-        <th>{{ report.date }}</th>
-        <th>{{ report.player.name }}</th>
-        <th>{{ report.rating }}</th>
-        <th>{{ report.minutes_played }}</th>
-        <th>{{ report.match }}</th>
-        <th>Edit</th>
-        <th>
-            <form method="post" action="{% url 'delete_report' report.id %}">
-                {% csrf_token %}
-                <button type="submit">Delete</button>
-            </form>
-        </th>
-    </tr>
-    {% endif %}
-{% endfor %}
-</table>
+<div class="reports_div">
+    <table class="content_table">
+        <thead>
+            <tr>
+                <th>Player photo</th>
+                <th>Date</th>
+                <th>Player</th>
+                <th>Rating</th>
+                <th>Minutes played</th>
+                <th>Game</th>
+                <th>Edit report</th>
+                <th>Delete report</th>
+            </tr>
+        </thead>
+        <tbody>
+    {% for report in reports %}
+        {% if report.scout_name == user or sports_director %}
+        <tr>
+            <td>
+                <img src="{{ report.player.photo.url }}" alt="Player Photo" height="100px">
+            </td>
+            <td>{{ report.date }}</td>
+            <td>
+                <a class="player_name" href="{% url 'player_details' slug=report.player.slug %}">
+                    {{ report.player.name }}
+                </a>
+            </td>
+            <td>{{ report.rating }}</td>
+            <td>{{ report.minutes_played }}</td>
+            <td>{{ report.match }}</td>
+            <td>
+                <form method="post" action="{% url 'edit_report' report.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Edit</button>
+                </form>
+            </td>
+            <td>
+                <form method="post" action="{% url 'delete_report' report.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endif %}
+    {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

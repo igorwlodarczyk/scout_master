@@ -7,6 +7,14 @@ class ScoutReportForm(forms.ModelForm):
         model = ScoutReport
         fields = ["player", "match", "rating", "minutes_played", "scout_name"]
 
+        widgets = {
+            "player": forms.Select(attrs={"class": "input_field"}),
+            "match": forms.Select(attrs={"class": "input_field"}),
+            "rating": forms.NumberInput(attrs={"class": "input_field"}),
+            "minutes_played": forms.NumberInput(attrs={"class": "input_field"}),
+            "scout_name": forms.TextInput(attrs={"class": "input_field"}),
+        }
+
     def __init__(self, *args, **kwargs):
         user = kwargs.pop("user", None)
         super(ScoutReportForm, self).__init__(*args, **kwargs)

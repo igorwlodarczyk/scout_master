@@ -55,7 +55,7 @@ def view_reports(request):
 def delete_report(request, report_id):
     report = get_object_or_404(ScoutReport, id=report_id)
     report.delete()
-    return redirect("success_page")
+    return redirect("view_reports")
 
 
 @login_required(login_url="/login/")
@@ -64,3 +64,17 @@ def player_details(request, slug):
     player_reports = ScoutReport.objects.all().filter(player=player)
     context = {"player": player, "reports": player_reports}
     return render(request, "scouting/player_details.html", context)
+
+
+@login_required(login_url="/login/")
+def edit_report(request, report_id):
+    # TODO fix form rendering
+    report = get_object_or_404(ScoutReport, id=report_id)
+    form = ScoutReportForm(request.POST or None, instance=report)
+    if form.is_valid():
+        form.save()
+        return redirect("view_reports")
+
+    return render(
+        request, "scouting/edit_report.html", {"form": form, "report": report}
+    )
