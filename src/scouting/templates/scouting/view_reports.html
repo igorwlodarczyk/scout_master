@@ -2,11 +2,12 @@
 {% load static %}
 {% block page_title %}ScoutMaster - view reports{% endblock %}
 {% block scripts %}
-<link rel="stylesheet" type="text/css" href="{% static 'scouting/css/view_reports.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'scouting/css/view_reports2.css' %}">
 {% endblock %}
 {% block content %}
-<table>
+<table class="content_table">
     <tr>
+        <th>Player photo</th>
         <th>Date</th>
         <th>Player</th>
         <th>Rating</th>
@@ -18,6 +19,9 @@
 {% for report in reports %}
     {% if report.scout_name == user or sports_director %}
     <tr>
+        <th>
+            <img src="{{ report.player.photo.url }}" alt="Player Photo" height="100px">
+        </th>
         <th>{{ report.date }}</th>
         <th>{{ report.player.name }}</th>
         <th>{{ report.rating }}</th>
