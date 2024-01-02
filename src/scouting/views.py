@@ -42,7 +42,7 @@ def add_match(request):
 def view_reports(request):
     groups = request.user.groups.all()
     user = str(request.user)
-    reports = ScoutReport.objects.all().filter(scout_name=user)
+    reports = ScoutReport.objects.all()
     context = {
         "reports": reports,
         "user": user,
