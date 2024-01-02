@@ -86,12 +86,14 @@ def view_players(request):
     return render(request, "scouting/view_players.html", context)
 
 
+@login_required(login_url="/login/")
 def delete_player(request, player_id):
     player = get_object_or_404(Player, id=player_id)
     player.delete()
     return redirect("view_players")
 
 
+@login_required(login_url="/login/")
 def edit_player(request, player_id):
     player = get_object_or_404(Player, id=player_id)
     if request.method == "POST":
@@ -107,6 +109,7 @@ def edit_player(request, player_id):
     )
 
 
+@login_required(login_url="/login/")
 def add_player(request):
     if request.method == "POST":
         form = PlayerForm(request.POST, request.FILES)
@@ -117,3 +120,8 @@ def add_player(request):
         form = PlayerForm()
 
     return render(request, "scouting/add_player.html", {"form": form})
+
+
+@login_required(login_url="/login/")
+def success_page(request):
+    return render(request, "scouting/success_page.html")
