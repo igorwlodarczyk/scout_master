@@ -61,7 +61,9 @@ def delete_report(request, report_id):
 @login_required(login_url="/login/")
 def player_details(request, slug):
     player = get_object_or_404(Player, slug=slug)
-    player_reports = ScoutReport.objects.all().filter(player=player)
+    player_reports = (
+        ScoutReport.objects.all().filter(player=player).order_by("-match__date")
+    )
     context = {"player": player, "reports": player_reports}
     return render(request, "scouting/player_details.html", context)
 
