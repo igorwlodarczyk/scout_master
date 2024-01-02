@@ -15,4 +15,5 @@ urlpatterns = [
     path("add-player", views.add_player, name="add_player"),
     path("success", views.success_page, name="success_page"),
     path("add-scout", views.add_scout, name="add_scout"),
+    path("access-denied", views.access_denied, name="access_denied"),
 ]

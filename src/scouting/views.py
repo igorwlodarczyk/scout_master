@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .utils import is_user_in_group
 from .forms import ScoutReportForm, MatchForm, PlayerForm, ScoutRegistrationForm
 from .models import ScoutReport, Player
+from .decorators import group_required
 
 # Create your views here.
 
@@ -130,6 +131,7 @@ def success_page(request):
 
 
 @login_required(login_url="/login/")
+@group_required("Sports_director")
 def add_scout(request):
     if request.method == "POST":
         form = ScoutRegistrationForm(request.POST)
@@ -139,3 +141,8 @@ def add_scout(request):
     else:
         form = ScoutRegistrationForm()
     return render(request, "scouting/add_scout.html", {"form": form})
+
+
+@login_required(login_url="/login/")
+def access_denied(request):
+    return render(request, "scouting/access_denied.html")
