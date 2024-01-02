@@ -13,6 +13,11 @@ timeout_time = 10
 config = {
     "base_url": "https://www.transfermarkt.com",
     "players_url": "/spieler-statistik/wertvollstespieler/marktwertetop",
+    "clubs": [
+        "https://www.transfermarkt.com/inter-mailand/startseite/verein/46",
+        "https://www.transfermarkt.com/al-nasr-riad/startseite/verein/18544",
+        "https://www.transfermarkt.com/real-madrid/startseite/verein/418/from/newsansicht",
+    ],
 }
 
 photos_dir = Path("photos")

@@ -39,7 +39,7 @@ def generate_scout_reports():
         games = Match.objects.all().filter(
             Q(home_club=player.club) | Q(away_club=player.club)
         )
-        for game in games:
+        for idx, game in enumerate(games, start=1):
             minutes_played = random.randint(60, 90)
             rating = round(random.uniform(5, 10), 1)
             report = ScoutReport(
@@ -50,6 +50,8 @@ def generate_scout_reports():
                 scout_name="JohnFlansky",
             )
             report.save()
+            if idx == 2:
+                break
 
 
 class Command(BaseCommand):
