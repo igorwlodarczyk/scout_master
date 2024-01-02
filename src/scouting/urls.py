@@ -14,4 +14,5 @@ urlpatterns = [
     path("edit-player/<int:player_id>/", views.edit_player, name="edit_player"),
     path("add-player", views.add_player, name="add_player"),
     path("success", views.success_page, name="success_page"),
+    path("add-scout", views.add_scout, name="add_scout"),
 ]

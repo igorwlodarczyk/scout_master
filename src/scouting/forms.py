@@ -1,5 +1,33 @@
 from django import forms
 from .models import ScoutReport, Player, Match, Club, Country
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User, Group
+
+
+class ScoutRegistrationForm(UserCreationForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ["username", "email", "password1", "password2"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields["username"].help_text = None
+        self.fields["password1"].help_text = None
+        self.fields["password2"].help_text = None
+
+    def save(self, commit=True):
+        user = super(ScoutRegistrationForm, self).save(commit=False)
+        user.email = self.cleaned_data["email"]
+
+        if commit:
+            user.save()
+            group = Group.objects.get(name="Scout")
+            user.groups.add(group)
+
+        return user
 
 
 class PlayerForm(forms.ModelForm):

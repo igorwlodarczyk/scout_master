@@ -1,0 +1,16 @@
+{% extends "scouting/base.html" %}
+{% load static %}
+{% block page_title %}ScoutMaster - add scout{% endblock %}
+{% block scripts %}
+<link rel="stylesheet" type="text/css" href="{% static 'scouting/css/form3.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'scouting/css/add_scout.css' %}">
+{% endblock %}
+{% block content %}
+<div class="input_section">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="input_button" type="submit">Register</button>
+    </form>
+</div>
+{% endblock %}

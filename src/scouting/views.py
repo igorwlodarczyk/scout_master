@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .utils import is_user_in_group
-from .forms import ScoutReportForm, MatchForm, PlayerForm
+from .forms import ScoutReportForm, MatchForm, PlayerForm, ScoutRegistrationForm
 from .models import ScoutReport, Player
 
 # Create your views here.
@@ -125,3 +125,15 @@ def add_player(request):
 @login_required(login_url="/login/")
 def success_page(request):
     return render(request, "scouting/success_page.html")
+
+
+@login_required(login_url="/login/")
+def add_scout(request):
+    if request.method == "POST":
+        form = ScoutRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("success_page")
+    else:
+        form = ScoutRegistrationForm()
+    return render(request, "scouting/add_scout.html", {"form": form})
