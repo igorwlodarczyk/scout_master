@@ -57,6 +57,33 @@ class ScoutReportForm(forms.ModelForm):
         self.fields["player"].queryset = Player.objects.all()
         self.fields["match"].queryset = Match.objects.all()
 
+    def clean_rating(self):
+        rating = self.cleaned_data.get("rating")
+
+        if rating is not None and (rating <= 0 or rating > 10):
+            raise forms.ValidationError("The rating must be between 0 and 10.")
+
+        return rating
+
+    def clean_match(self):
+        match = self.cleaned_data.get("match")
+        player = self.cleaned_data.get("player")
+
+        if match.home_club != player.club and match.away_club != player.club:
+            raise forms.ValidationError(
+                "Player club does not match clubs from the match."
+            )
+
+        return match
+
+    def clean_minutes_played(self):
+        minutes_played = self.cleaned_data.get("minutes_played")
+
+        if minutes_played < 0:
+            raise forms.ValidationError("The number of minutes must be greater than 0.")
+
+        return minutes_played
+
 
 class MatchForm(forms.ModelForm):
     class Meta:
