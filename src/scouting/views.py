@@ -68,7 +68,6 @@ def player_details(request, slug):
 
 @login_required(login_url="/login/")
 def edit_report(request, report_id):
-    # TODO fix form rendering
     report = get_object_or_404(ScoutReport, id=report_id)
     form = ScoutReportForm(request.POST or None, instance=report)
     if form.is_valid():
@@ -94,7 +93,6 @@ def delete_player(request, player_id):
 
 
 def edit_player(request, player_id):
-    # TODO fix form rendering
     player = get_object_or_404(Player, id=player_id)
     if request.method == "POST":
         form = PlayerForm(request.POST, request.FILES, instance=player)

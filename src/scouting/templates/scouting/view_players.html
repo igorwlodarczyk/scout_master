@@ -42,7 +42,7 @@
             <img src="{{ player.club.badge.url }}" alt="Club Badge" height="100px">
         </td>
         <td>
-                <form method="post" action="{% url 'edit_player' player.id %}">
+                <form method="get" action="{% url 'edit_player' player.id %}">
                     {% csrf_token %}
                     <button type="submit">Edit</button>
                 </form>

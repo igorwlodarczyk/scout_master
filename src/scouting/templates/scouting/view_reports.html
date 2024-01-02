@@ -37,7 +37,7 @@
             <td>{{ report.minutes_played }}</td>
             <td>{{ report.match }}</td>
             <td>
-                <form method="post" action="{% url 'edit_report' report.id %}">
+                <form method="get" action="{% url 'edit_report' report.id %}">
                     {% csrf_token %}
                     <button type="submit">Edit</button>
                 </form>
