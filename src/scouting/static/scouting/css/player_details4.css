@@ -5,10 +5,11 @@
     transform: translate(-50%, 0%);
     left: 50%;
     top: 100px;
-    background: #DCDCDC;
+    background: #88B5FF;
     font-family: 'Kanit', sans-serif;
     font-size: 20px;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .player_info {
@@ -32,10 +33,11 @@
     width: 800px;
     transform: translate(-50%, 0%);
     left: 50%;
-    background: #DCDCDC;
+    background: #88B5FF;
     font-family: 'Kanit', sans-serif;
     font-size: 20px;
     border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .reports_section li {
