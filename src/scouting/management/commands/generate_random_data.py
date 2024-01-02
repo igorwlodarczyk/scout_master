@@ -40,7 +40,7 @@ def generate_scout_reports():
             Q(home_club=player.club) | Q(away_club=player.club)
         )
         for game in games:
-            minutes_played = random.randint(5, 90)
+            minutes_played = random.randint(60, 90)
             rating = round(random.uniform(5, 10), 1)
             report = ScoutReport(
                 player=player,
