@@ -1,0 +1,30 @@
+.input_field {
+    display: block;
+    font-size: 26px;
+}
+
+.input_button {
+    margin-top: 10px;
+    font-size: 26px;
+    font-family: 'Kanit', sans-serif;
+}
+
+.input_section {
+    font-size: 30px;
+    position: relative;
+    top: 100px;
+    width: 650px;
+    margin: auto;
+    border: 4px #CC9E85;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+    background: #88B5FF;
+}
+
+.errorlist {
+  list-style-type: none;
+  color: red;
+  margin: 0;
+  padding: 0;
+}

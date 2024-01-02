@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>{% block page_title %}{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'scouting/css/base3.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik+Moonrocks&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap" rel="stylesheet">
+
+        {% block scripts %}{% endblock %}
+    </head>
+    <body>
+        <a class="href_adj" href="/">
+            <h1 class="page_title">
+                <span class="white-text">Scout</span>
+                <span class="red-text">Master</span>
+            </h1>
+        </a>
+        {% block content %}{% endblock %}
+    </body>
+</html>

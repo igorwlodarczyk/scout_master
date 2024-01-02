@@ -1,0 +1,51 @@
+.player_frame {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    transform: translate(-50%, 0%);
+    left: 50%;
+    top: 100px;
+    background: #88B5FF;
+    font-family: 'Kanit', sans-serif;
+    font-size: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.player_info {
+    position: absolute;
+    top: 80px;
+    left: 270px;;
+}
+
+.player_photo{
+    position: relative;
+    top: 100px;
+    left: 50px;
+    width: 200px;
+    border: 1px solid #000;
+    border-radius: 40px;
+}
+
+.reports_section {
+    position: relative;
+    margin-top: 200px;
+    width: 800px;
+    transform: translate(-50%, 0%);
+    left: 50%;
+    background: #88B5FF;
+    font-family: 'Kanit', sans-serif;
+    font-size: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reports_section li {
+    list-style-type: none;
+    text-align: center;
+}
+
+.reports_section p,
+.reports_section h2 {
+    text-align: center;
+}

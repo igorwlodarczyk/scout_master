@@ -3,3 +3,6 @@ psycopg2
 black
 python-decouple
 Pillow
+requests
+beautifulsoup4
+unidecode

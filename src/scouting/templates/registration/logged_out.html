@@ -1,0 +1,12 @@
+{% extends "scouting/base.html" %}
+{% load static %}
+{% block page_title %}ScoutMaster - logout{% endblock %}
+{% block scripts %}
+<link rel="stylesheet" type="text/css" href="{% static 'scouting/css/logged_out_page.css' %}">
+{% endblock %}
+{% block content %}
+<p class="logged_out_text">Logged out!</p>
+<div class="center">
+    <a class="home_text" href="/">Home</a>
+</div>
+{% endblock %}

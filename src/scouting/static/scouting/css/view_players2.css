@@ -1,0 +1,19 @@
+.players_div {
+    position: relative;
+    top: 50px;
+    font-family: 'Kanit', sans-serif;
+    transform: translate(-50%, 0%);
+    left: 50%;
+    display: table;
+}
+
+.players_div button {
+    font-family: 'Kanit', sans-serif;
+    font-size: 0.9em;
+    width: 75px;
+}
+
+.players_div a {
+   text-decoration: none;
+   color: #fff;
+}

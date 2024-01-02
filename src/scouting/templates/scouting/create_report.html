@@ -1,0 +1,15 @@
+{% extends "scouting/base.html" %}
+{% load static %}
+{% block page_title %}ScoutMaster - create report{% endblock %}
+{% block scripts %}
+<link rel="stylesheet" type="text/css" href="{% static 'scouting/css/form4.css' %}">
+{% endblock %}
+{% block content %}
+<div class="input_section">
+    <form action="{% url 'create_scout_report' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input class="input_button" type="submit" value="Submit">
+    </form>
+</div>
+{% endblock %}

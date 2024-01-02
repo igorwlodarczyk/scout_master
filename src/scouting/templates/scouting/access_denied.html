@@ -1,0 +1,12 @@
+{% extends "scouting/base.html" %}
+{% load static %}
+{% block page_title %}ScoutMaster - access denied{% endblock %}
+{% block scripts %}
+<link rel="stylesheet" type="text/css" href="{% static 'scouting/css/info.css' %}">
+{% endblock %}
+{% block content %}
+<div class="text">
+    <p class>Access denied!</p>
+    <a href="/">Return to home</a>
+</div>
+{% endblock %}
