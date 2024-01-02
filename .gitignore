@@ -36,6 +36,7 @@ develop-eggs/
 *.bak
 flags
 
-*.png
-*.jpg
+
 *.json
+scripts/scraper/photos
+src/scouting/files/**
