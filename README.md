@@ -31,7 +31,7 @@ python3 manage.py runserver
 ```
 
 ## Tests
-In order to run Selenium tests run pytest command from **root** directory.
+In order to start Selenium tests run pytest command from **root** directory.
 ```shell
 pytest
 ```
