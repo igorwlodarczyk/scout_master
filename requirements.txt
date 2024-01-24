@@ -6,5 +6,6 @@ Pillow
 requests
 beautifulsoup4
 unidecode
-selenium==4.5
+selenium==4.6.1
 webdriver-manager
+pytest
