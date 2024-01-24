@@ -9,3 +9,4 @@ unidecode
 selenium
 webdriver-manager
 pytest
+pytest-dependency
