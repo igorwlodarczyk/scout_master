@@ -10,5 +10,3 @@ def driver(request):
     driver = webdriver.Chrome(service=chrome_service)
     yield driver
     driver.close()
-
-

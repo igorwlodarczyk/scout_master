@@ -1,3 +1,3 @@
-webiste_base_url = "http://127.0.0.1:8000"
+website_base_url = "http://127.0.0.1:8000/"
 
 users = [("igor", "abc123")]
