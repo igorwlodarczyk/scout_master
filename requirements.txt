@@ -10,3 +10,4 @@ selenium
 webdriver-manager
 pytest
 pytest-dependency
+pytest-rerunfailures
