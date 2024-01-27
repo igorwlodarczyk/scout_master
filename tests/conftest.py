@@ -4,6 +4,7 @@ import os
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from time import sleep
+from .const import port_number
 
 
 @pytest.fixture(scope="function")
@@ -18,7 +19,9 @@ def driver(request):
 @pytest.fixture(scope="session", autouse=True)
 def run_server():
     manage_py_file_path = os.path.join("src", "manage.py")
-    server_process = subprocess.Popen(["python3", manage_py_file_path, "runserver"])
+    server_process = subprocess.Popen(
+        ["python3", manage_py_file_path, "runserver", str(port_number)]
+    )
     sleep(2)
     yield server_process
     server_process.terminate()
