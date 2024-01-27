@@ -52,6 +52,7 @@ def generate_scout_reports():
             report.save()
             if idx == 2:
                 break
+        break
 
 
 class Command(BaseCommand):

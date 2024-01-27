@@ -6,3 +6,8 @@ Pillow
 requests
 beautifulsoup4
 unidecode
+selenium
+webdriver-manager
+pytest
+pytest-dependency
+pytest-rerunfailures

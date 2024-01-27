@@ -29,3 +29,9 @@ python3 manage.py migrate
 python3 manage.py create_groups
 python3 manage.py runserver
 ```
+
+## Tests
+In order to start Selenium tests run pytest command from **root** directory.
+```shell
+pytest
+```
